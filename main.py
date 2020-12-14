@@ -1,11 +1,22 @@
 from app import app
-from flask import jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template
 import pymongo
+
+
+app = Flask(__name__, template_folder='Templates')
+
 
 client = pymongo.MongoClient("mongodb+srv://ShrijanK:dummyPassword1234@cluster0.wfpuf.mongodb.net/DprogDb?retryWrites=true&w=majority")
 
 myDb = client["DprogDb"]
 
+
+
+
+
+@app.route('/')
+def hello():
+    return render_template('homeFile.html')
 
 @app.route('/google-charts')
 def google_pie_chart():
